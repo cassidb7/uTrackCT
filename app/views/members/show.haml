@@ -14,6 +14,8 @@
           .profile-details
             %ul.list-group
               %li.list-group-item
+                %span Friend Count: #{@member.friends.size}
+              %li.list-group-item
                 %span= @member.website_url
               - if @member.shortened_website_url.present?
                 %li.list-group-item

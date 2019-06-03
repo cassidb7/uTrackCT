@@ -3,6 +3,7 @@ RSpec.describe Member, :type => :model do
 
   before(:all) do
     @member1 = create(:member, website_url: 'https://www.wikipedia.org/')
+    @memberROR = create(:member, website_url: 'https://en.wikipedia.org/wiki/Ruby_on_Rails')
     @tag = create(:tag, member: @member1)
   end
 
@@ -28,6 +29,11 @@ RSpec.describe Member, :type => :model do
   it "search returns filtered results" do
     query = Member.return_relevant(search: 'apex')
     expect(Member.all.size).to_not eq(query.size)
+  end
+
+  it "member A should be able to befriend member B" do
+    @member1.befriend(member: @memberROR)
+    expect(@member1.friends.size).to eq(@memberROR.friends.size)
   end
 
 end
