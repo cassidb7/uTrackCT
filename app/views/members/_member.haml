@@ -1,0 +1,6 @@
+%tr
+  %td= member.name
+  %td= member.website_url
+  %td= member.shortened_website_url
+  %td
+    = link_to 'Show', member_path(member), class: 'btn btn-primary'
