@@ -28,12 +28,16 @@
                 %li.nav-link.active
                   %a{"data-toggle" => "tab", href: "#tab-overview"} Tags
                 %li.nav-link
-                  %a{"data-toggle" => "tab", href: "#tab-friends"} Friends
+                  %a{"data-toggle" => "tab", href: "#tab-friends"} My Friends
+                %li.nav-link
+                  %a{"data-toggle" => "tab", href: "#tab-add-friends"} Add Friends
               .tab-content
                 #tab-overview.tab-pane.fade.in.active
                   = render 'members/partials/tags'
                 #tab-friends.tab-pane.clearfix.fade
                   = render'members/partials/friends'
+                #tab-add-friends.tab-pane.clearfix.fade
+                  = render'members/partials/add_friends'
 
 :javascript
   $(document).ready(function(){

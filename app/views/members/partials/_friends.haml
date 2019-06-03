@@ -1,2 +1,13 @@
 .row.card.card-body.bg-light
-  %h4 Friend Placeholder Tab View
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+    %tbody
+      - @friends.each do |f|
+        %tr
+          %td= f.name
+          %td
+            = link_to 'Show', member_path(f), class: 'btn btn-primary'

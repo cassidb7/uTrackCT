@@ -7,6 +7,8 @@ class MembersController < ApplicationController
 
   def show
     @tags = @member.tags
+    @members = Member.return_other_members(@member)
+    @friends = @member.friends
   end
 
   def create

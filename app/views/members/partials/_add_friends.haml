@@ -1,0 +1,15 @@
+.row.card.card-body.bg-light
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+    %tbody
+      - @members.each do |m|
+        %tr
+          %td= m.name
+          %td
+            = link_to 'Show', member_path(m), class: 'btn btn-primary'
+          %td
+            = link_to 'Add', member_friendships_path(@member, friend_id: m),method: :post, class: 'btn btn-primary'

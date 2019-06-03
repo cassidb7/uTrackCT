@@ -11,8 +11,12 @@ class Member < ApplicationRecord
   # callbacks
   after_create :tag_generation_process, :generate_short_url
 
+  # scopes
+  scope :return_other_members, ->(member) { where.not(id: member.id)}
+
   # methods
   def befriend(member:)
+    return false unless Member.friendship_exists?(member_id: id, friend_id: member.id)
     friends << member
     member.friends << self
   end
@@ -23,6 +27,10 @@ class Member < ApplicationRecord
 
   def tag_generation_process
     GenerateMemberTagJob.perform_later(website_url: website_url, member: self)
+  end
+
+  def self.friendship_exists?(member_id:, friend_id:)
+    joins(:friendships).where(id: member_id, friendships: {friend_id: friend_id}).empty?
   end
 
   def self.return_relevant(search:)
