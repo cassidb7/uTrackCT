@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature "Leads", :type =>
+RSpec.feature "Member", :type =>
     :feature do
   before do
     begin

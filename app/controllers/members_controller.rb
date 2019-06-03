@@ -13,7 +13,7 @@ class MembersController < ApplicationController
     @member = Member.create(member_params)
     respond_to do |format|
       if @member.save
-        format.html { redirect_to members_path, notice: 'Member Successfully Created' }
+        format.html { redirect_to member_path(@member), notice: 'Member Successfully Created' }
       else
         format.html { redirect_to new_member_path, notice: @member.errors.full_messages }
       end

@@ -10,7 +10,7 @@
         .col-12
           %h1=@member.name
       #user-profile.row
-        .col-4
+        .col-5
           .profile-details
             %ul.list-group
               %li.list-group-item
@@ -19,7 +19,7 @@
                 %li.list-group-item
                   %span= @member.shortened_website_url
 
-        .col-8
+        .col-7
           .main-box.clearfix
             .tabs-wrapper.profile-tabs
               %ul.nav.nav-tabs
@@ -37,3 +37,9 @@
   $(document).ready(function(){
     $('a[href="#tab-overview"]').tab('show');
   });
+
+:css
+  span {
+    display:block;
+    word-wrap:break-word;
+  }

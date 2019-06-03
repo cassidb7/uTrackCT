@@ -7,9 +7,9 @@ require 'open-uri'
 
 class TagGenerationService
 
-  def initialize(website_url:, member_id:)
+  def initialize(website_url:, member:)
     @website_url = website_url
-    @member = Member.find(member_id)
+    @member = member
   end
 
   def run

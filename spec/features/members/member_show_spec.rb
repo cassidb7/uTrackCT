@@ -1,8 +1,9 @@
 require 'rails_helper'
-RSpec.feature "Leads", :type =>
+RSpec.feature "Member", :type =>
     :feature do
   before do
     @member = FactoryBot.create(:member)
+    @tag = FactoryBot.create(:tag, member: @member)
   end
 
   scenario "Creates a new Member" do

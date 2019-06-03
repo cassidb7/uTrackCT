@@ -7,11 +7,15 @@ class Member < ApplicationRecord
   has_many :tags
 
   # callbacks
-  after_create :tag_generation_process
+  after_create :tag_generation_process, :generate_short_url
 
   # methods
+  def generate_short_url
+    ShortenWebsiteUrlJob.perform_later(website_url: website_url, member: self)
+  end
+
   def tag_generation_process
-    TagGenerationService.new(website_url: self.website_url, member_id: self.id).run
+    GenerateMemberTagJob.perform_later(website_url: website_url, member: self)
   end
 
   def self.return_relevant(search:)

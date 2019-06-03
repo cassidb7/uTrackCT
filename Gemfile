@@ -34,11 +34,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'haml', '~> 5.0', '>= 5.0.4'
 
-gem 'rest-client', '~> 1.8'
+gem 'httparty', '~> 0.13.7'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+# background job processing
+gem 'faktory_worker_ruby'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
