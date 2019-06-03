@@ -2,7 +2,7 @@ require "rails_helper"
 RSpec.describe Member, :type => :model do
 
   before(:all) do
-    @member1 = create(:member)
+    @member1 = create(:member, website_url: 'https://www.wikipedia.org/')
     @tag = create(:tag, member: @member1)
   end
 
@@ -24,4 +24,10 @@ RSpec.describe Member, :type => :model do
     count = @member1.tags.size
     expect(@member1.tags.size).to eq(count)
   end
+
+  it "search returns filtered results" do
+    query = Member.return_relevant(search: 'apex')
+    expect(Member.all.size).to_not eq(query.size)
+  end
+
 end

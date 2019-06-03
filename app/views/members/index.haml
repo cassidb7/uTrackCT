@@ -1,8 +1,16 @@
 .row
   .col-4
-    %h1 Members
-  .col-8
+    %h3 Members
+  .col-4
+    = form_tag members_path, method: 'get', class: 'form-inline' do
+      .form-group.mx-sm-3.mb-2
+        = text_field_tag :member, nil, placeholder: 'Search', class: 'form-control mr-sm-2 mb-2 mb-sm-0'
+        =button_tag 'Search', class: 'btn btn-primary mt-2 mt-sm-0'
+  .col-4
     = link_to "New Member", new_member_path, class: "btn btn-info float-right mr-top"
+.row
+  .offset-5
+    = table_count(@members.size)
   %table.table
     %thead
       %tr
