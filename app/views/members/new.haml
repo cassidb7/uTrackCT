@@ -1,19 +1,26 @@
-%h1Members#new
-.offset-4.col-6
-  = form_for @member, url: members_path do |f|
-    .form-group
-      = f.label :name, class: 'col-8 control-label' do
-        Name
-        %span{:style => "color:red;"} *
-      .col-12
-        = f.text_field :name, class: 'form-control', autofocus: true
-    .form-group
-      = f.label :website_url, class: 'col-8 control-label' do
-        Website Url
-        %span{:style => "color:red;"} *
-      .col-12
-        = f.text_field :website_url, class: 'form-control'
+%body
+  .row
+    .col-lg-12
+      %ol.breadcrumb
+        %li.breadcrumb-item= link_to "Home", root_url
+        %li.breadcrumb-item.active New Member
 
-    .form-group
-      .col-6
-        = f.submit 'Add Member', class: 'btn btn-small btn-primary'
+.row
+  .offset-4.col-6
+    = form_for @member, url: members_path do |f|
+      .form-group
+        = f.label :name, class: 'col-8 control-label' do
+          Name
+          %span{:style => "color:red;"} *
+        .col-12
+          = f.text_field :name, class: 'form-control', autofocus: true
+      .form-group
+        = f.label :website_url, class: 'col-8 control-label' do
+          Website Url
+          %span{:style => "color:red;"} *
+        .col-12
+          = f.text_field :website_url, class: 'form-control'
+
+      .form-group
+        .col-6
+          = f.submit 'Add Member', class: 'btn btn-small btn-primary'

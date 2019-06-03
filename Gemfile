@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'haml', '~> 5.0', '>= 5.0.4'
 
-gem 'httparty', '~> 0.13.7'
+gem 'rest-client', '~> 1.8'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 # Reduces boot times through caching; required in config/boot.rb
@@ -62,6 +62,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 

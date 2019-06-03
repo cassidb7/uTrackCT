@@ -1,0 +1,11 @@
+.row.card.card-body.bg-light
+  - if @tags.blank?
+    %h1 No Tags Available
+  - else
+    %h1 Tags
+    %table#exam_table.table
+      %thead
+        %tr
+          %th Tag
+      %tbody
+        = render @tags

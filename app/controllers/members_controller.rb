@@ -1,9 +1,12 @@
 class MembersController < ApplicationController
+  before_action :set_member, only: [:show]
+
   def index
     @members = Member.all
   end
 
   def show
+    @tags = @member.tags
   end
 
   def create

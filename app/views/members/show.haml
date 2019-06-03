@@ -1,2 +1,39 @@
-<h1>Members#show</h1>
-<p>Find me in app/views/members/show.html.erb</p>
+%body
+  .row
+    .col-lg-12
+      %ol.breadcrumb
+        %li.breadcrumb-item= link_to "Home", root_url
+        %li.breadcrumb-item.active=@member.name
+  .row
+    .col-12
+      .row
+        .col-12
+          %h1=@member.name
+      #user-profile.row
+        .col-4
+          .profile-details
+            %ul.list-group
+              %li.list-group-item
+                %span= @member.website_url
+              - if @member.shortened_website_url.present?
+                %li.list-group-item
+                  %span= @member.shortened_website_url
+
+        .col-8
+          .main-box.clearfix
+            .tabs-wrapper.profile-tabs
+              %ul.nav.nav-tabs
+                %li.nav-link.active
+                  %a{"data-toggle" => "tab", href: "#tab-overview"} Tags
+                %li.nav-link
+                  %a{"data-toggle" => "tab", href: "#tab-friends"} Friends
+              .tab-content
+                #tab-overview.tab-pane.fade.in.active
+                  = render 'members/partials/tags'
+                #tab-friends.tab-pane.clearfix.fade
+                  = render'members/partials/friends'
+
+:javascript
+  $(document).ready(function(){
+    $('a[href="#tab-overview"]').tab('show');
+  });
