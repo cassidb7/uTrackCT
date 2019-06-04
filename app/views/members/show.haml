@@ -25,12 +25,12 @@
           .main-box.clearfix
             .tabs-wrapper.profile-tabs
               %ul.nav.nav-tabs
-                %li.nav-link.active
-                  %a{"data-toggle" => "tab", href: "#tab-overview"} Tags
                 %li.nav-link
-                  %a{"data-toggle" => "tab", href: "#tab-friends"} My Friends
+                  = nav_tab('tab-overview', 'Tags', @active_tab)
                 %li.nav-link
-                  %a{"data-toggle" => "tab", href: "#tab-add-friends"} Add Friends
+                  = nav_tab('tab-friends', 'My Friends', @active_tab)
+                %li.nav-link
+                  = nav_tab('tab-add-friends', 'Add Friends', @active_tab)
               .tab-content
                 #tab-overview.tab-pane.fade.in.active
                   = render 'members/partials/tags'
@@ -41,7 +41,17 @@
 
 :javascript
   $(document).ready(function(){
-    $('a[href="#tab-overview"]').tab('show');
+  let tabId = '#{@active_tab || "tab-overview"}'
+    $('a[href="#'+ tabId +'"]').tab('show');
+  });
+
+  $(document).ready(function () {
+    $('.nav li a').click(function(e) {
+      $('.nav li.active').removeClass('active');
+      let $parent = $(this).parent();
+      $parent.addClass('active');
+      e.preventDefault();
+    });
   });
 
 :css
@@ -49,3 +59,5 @@
     display:block;
     word-wrap:break-word;
   }
+
+

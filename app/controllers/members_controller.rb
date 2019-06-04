@@ -2,12 +2,15 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show]
 
   def index
-    @members = params.blank? ? return_all_members : return_relevant_members(search: params[:member])
+    @search = params[:query] || nil
+    @members = Member.return_other_members(search: params[:query])
   end
 
   def show
+    @active_tab = params[:active_tag] || 'tab-overview'
+    @search = params[:query] || nil
     @tags = @member.tags
-    @members = Member.return_other_members(@member)
+    @members = Member.return_other_members(@member.id, search: @search)
     @friends = @member.friends
   end
 
@@ -34,13 +37,5 @@ class MembersController < ApplicationController
 
   def member_params
     params.require(:member).permit(:name, :website_url)
-  end
-
-  def return_all_members
-    Member.all
-  end
-
-  def return_relevant_members(search:)
-    Member.return_relevant(search: search)
   end
 end

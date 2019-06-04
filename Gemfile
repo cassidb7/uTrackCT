@@ -67,6 +67,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'launchy'
 end
 
 

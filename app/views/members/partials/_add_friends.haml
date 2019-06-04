@@ -1,4 +1,11 @@
 .row.card.card-body.bg-light
+  .row
+    = form_tag member_path(@member), method: 'get', class: 'form-inline' do
+      .form-group.mx-sm-3.mb-2
+        = text_field_tag :query, @search, placeholder: 'Search', class: 'form-control mr-sm-2 mb-2 mb-sm-0'
+        =hidden_field_tag :active_tag, 'tab-add-friends'
+
+      =button_tag 'Search', class: 'btn btn-primary mt-2 mt-sm-0'
   %table.table
     %thead
       %tr

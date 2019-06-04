@@ -31,4 +31,12 @@ module ApplicationHelper
     [:danger, :warning, :success, :info]
   end
 
+  def nav_tab(tab_id, title, current_tab)
+    base_css = tab_id == current_tab ? 'nav-link active' : 'nav-link'
+
+    content_tag :li, class: base_css do
+      link_to title, "##{tab_id.gsub('#', '')}", 'data-toggle' => 'tab'
+    end
+  end
+
 end

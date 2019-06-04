@@ -11,12 +11,10 @@ class Member < ApplicationRecord
   # callbacks
   after_create :tag_generation_process, :generate_short_url
 
-  # scopes
-  scope :return_other_members, ->(member) { where.not(id: member.id)}
-
   # methods
   def befriend(member:)
     return false unless Member.friendship_exists?(member_id: id, friend_id: member.id)
+
     friends << member
     member.friends << self
   end
@@ -33,7 +31,15 @@ class Member < ApplicationRecord
     joins(:friendships).where(id: member_id, friendships: {friend_id: friend_id}).empty?
   end
 
-  def self.return_relevant(search:)
-    joins(:tags).where(Tag.arel_table[:tag_field].lower.matches("%#{search}%")).uniq
+  def self.return_other_members(member_id=nil, search:)
+    tags = Tag.arel_table
+    members = Member.arel_table
+
+    base = Member.joins(:tags)
+    base = base.where(members[:id].not_eq(member_id)) if member_id.present?
+    base = base.where(tags[:tag_field].lower.matches("%#{search}%")) if search.present?
+    base = base.distinct
+
+    Member.find_by_sql(base.to_sql)
   end
 end
