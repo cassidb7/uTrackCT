@@ -27,7 +27,8 @@ RSpec.describe Member, :type => :model do
   end
 
   it "search returns filtered results" do
-    query = Member.return_relevant(search: 'apex')
+    query = Member.return_other_members(search: 'apex')
+    # query = Member.return_relevant(search: 'apex')
     expect(Member.all.size).to_not eq(query.size)
   end
 
