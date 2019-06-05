@@ -1,24 +1,18 @@
 # README
+This app uses faktory for background jobs. This can be run via a docker container by using the following command
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+docker run --rm -it -p 127.0.0.1:7419:7419 -p 127.0.0.1:7420:7420 contribsys/faktory:latest
 
-Things you may want to cover:
+To connect to the url shortening service it uses Firebase Dynamic Links and as such needs an api key.
 
-* Ruby version
+The api key has been attached to the email and to add it to the applicaion run the command
 
-* System dependencies
+bin/rails credentials:edit
 
-* Configuration
+and add the key in the following format:
 
-* Database creation
+firebase:
+  api_key: "API_KEY"
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Unfortunately I was unable to complete the final part of the exercise due to time constraints.
